@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { config } from 'dotenv';
+import { Pool } from 'pg';
 
 config({
   path: `${__dirname}/../env/.env`
@@ -21,8 +22,10 @@ app.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);
 });
 
-app.get('/', (_req, res) => {
-  res.status(200).json({
-    message: "Hello, World!"
-  })
+const pool: Pool = new Pool({
+  user: process.env['PGUSER'],
+  host: process.env['PGHOST'],
+  database: process.env['PGDATABASE'],
+  password: process.env['PGPASSWORD'],
+  port: parseInt(process.env['PGPORT'] as string)
 });
