@@ -5,6 +5,10 @@
   "main": "dist/index.js",
   "author": "Reimar Rosas",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon dist/index.js",
+    "compile": "tsc --watch"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
